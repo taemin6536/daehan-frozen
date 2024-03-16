@@ -1,0 +1,93 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.3'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+allprojects{
+    group = 'com.tae.min'
+    version = '1.0.0'
+}
+
+subprojects{
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    repositories {
+        mavenCentral()
+    }
+
+    task initSourceFolders {
+        sourceSets*.java.srcDirs*.each {
+            if (!it.exists()) {
+                it.mkdirs()
+            }
+        }
+
+        sourceSets*.resources.srcDirs*.each {
+            if (!it.exists()) {
+                it.mkdirs()
+            }
+        }
+    }
+
+    dependencies {
+        // spring
+        implementation 'org.springframework.boot:spring-boot-starter-aop'
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+        annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+        // lombok
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+
+        // dev
+        implementation 'org.springframework.boot:spring-boot-devtools'
+
+        // test
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
+    }
+}
+
+group = 'com.tam.min'
+version = '1.0.0'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // spring
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // dev
+    implementation 'org.springframework.boot:spring-boot-devtools'
+
+    // test
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
