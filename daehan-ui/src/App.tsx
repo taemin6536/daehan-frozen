@@ -6,14 +6,14 @@ import axios from "axios";
 
 // function App() {
 //   const [count, setCount] = useState(0);
-//   const [hello, setHello] = useState('');
-//
-//     useEffect(() => {
-//         axios.get('/api/test')
-//             .then((res) => {
-//                 setHello(res.data);
-//             })
-//     }, []);
+//   // const [hello, setHello] = useState('');
+//   //
+//   //   useEffect(() => {
+//   //       axios.get('/api/test')
+//   //           .then((res) => {
+//   //               setHello(res.data);
+//   //           })
+//   //   }, []);
 //   return (
 //     <>
 //       <div>
@@ -36,14 +36,15 @@ import axios from "axios";
 //       <p className="read-the-docs">
 //         Click on the Vite and React logos to learn more
 //       </p>
-//         <div className="App">
-//             백엔드 데이터 : {hello}
-//         </div>
+//         {/*<div className="App">*/}
+//         {/*    백엔드 데이터 : {hello}*/}
+//         {/*</div>*/}
 //     </>
 //   )
 // }
 
 function App() {
+
     const [hello, setHello] = useState('')
 
     useEffect(() => {
