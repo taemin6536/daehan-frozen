@@ -33,6 +33,6 @@ public class UserController {
      */
     @GetMapping("/api/user/create")
     public String createUser(Member member){
-
+        return "";
     }
 }
