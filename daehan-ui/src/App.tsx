@@ -55,7 +55,7 @@ function App() {
 
     return (
         <div>
-            백엔드 데이터 => {hello}
+            백엔드 데이터 =&gt; {hello}
         </div>
     );
 }
