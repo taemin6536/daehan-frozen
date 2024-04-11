@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @GetMapping("/api/test")
-    public String test(){
+    public String hello(){
         log.info("test");
         return "test success";
     }
