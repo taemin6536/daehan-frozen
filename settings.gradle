@@ -1,5 +1,15 @@
-rootProject.name = 'coldCar'
+rootProject.name = 'daehan-frozen'
 
-include 'user-api'
-include 'ask-api'
+dependencyResolutionManagement {
+    apply from: 'repositories.gradle'
 
+    settings.ext.configureSharedRepositories(repositories)
+}
+
+//include 'user-api'
+
+file('modules/api').eachDir { dir ->
+    println("${dir.name}:${dir}")
+    include(":${dir.name}")
+    project(":${dir.name}").projectDir = dir
+}

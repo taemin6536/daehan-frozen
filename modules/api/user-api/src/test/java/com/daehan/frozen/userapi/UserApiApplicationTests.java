@@ -1,4 +1,4 @@
-package com.tae.min.userapi;
+package com.daehan.frozen.userapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,0 +1,14 @@
+
+
+def configureSharedRepositories(RepositoryHandler handler) {
+
+    handler.mavenCentral()
+
+    handler.maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+
+    //handler.mavenCentral()
+}
+
+ext.configureSharedRepositories = this.&configureSharedRepositories

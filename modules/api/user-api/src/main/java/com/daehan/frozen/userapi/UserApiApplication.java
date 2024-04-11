@@ -1,4 +1,4 @@
-package com.tae.min.userapi;
+package com.daehan.frozen.userapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
