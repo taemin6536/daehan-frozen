@@ -1,19 +1,18 @@
 package com.daehan.frozen.userapi.controller;
 
 import com.daehan.frozen.userapi.entity.Member;
+import com.daehan.frozen.userapi.entity.ResultMessage;
 import com.daehan.frozen.userapi.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.logging.Logger;
 
 @RestController
-//@RequestMapping("/api/user/v1")
 @Slf4j
 public class UserController {
 
@@ -28,11 +27,20 @@ public class UserController {
 
     /**
      * 유저 회원 가입
-     * @param member
-     * @return member
+     * @param request
      */
-    @GetMapping("/api/user/create")
-    public String createUser(Member member){
-        return "";
+    @PostMapping("/api/user")
+    public ResponseEntity<Object> createUser(HttpRequest request){
+        ResultMessage resultMessage = new ResultMessage();
+
+
+        return ResponseEntity.status(HttpStatus.OK).body();
+    }
+
+    @GetMapping("/api/user")
+    public ResponseEntity<Member> getUser(){
+        Member member = userService.getUser();
+
+        return ResponseEntity.status(HttpStatus.OK).body(member);
     }
 }

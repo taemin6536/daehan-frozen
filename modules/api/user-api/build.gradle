@@ -8,6 +8,9 @@ jar {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation "jakarta.persistence:jakarta.persistence-api:2.2.3"
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 }
 
 // prepareKotlinBuildScriptModel 오류 방지
