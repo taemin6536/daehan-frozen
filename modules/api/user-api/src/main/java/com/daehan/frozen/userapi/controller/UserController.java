@@ -2,7 +2,9 @@ package com.daehan.frozen.userapi.controller;
 
 import com.daehan.frozen.userapi.entity.Member;
 import com.daehan.frozen.userapi.entity.ResultMessage;
+import com.daehan.frozen.userapi.entity.dto.req.MemberSaveReqDto;
 import com.daehan.frozen.userapi.service.UserService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -25,16 +27,10 @@ public class UserController {
         return "test success";
     }
 
-    /**
-     * 유저 회원 가입
-     * @param request
-     */
-    @PostMapping("/api/user")
-    public ResponseEntity<Object> createUser(HttpRequest request){
-        ResultMessage resultMessage = new ResultMessage();
+    @PostMapping("/api/user/regist")
+    public ResponseEntity<Object> saveMember(@Valid @RequestBody MemberSaveReqDto reqDto){
 
-
-        return ResponseEntity.status(HttpStatus.OK).body();
+        return new ResponseEntity<>(userService.saveMember(reqDto), HttpStatus.OK);
     }
 
     @GetMapping("/api/user")
