@@ -1,7 +1,25 @@
 spring:
   application:
     name: user-api
+  h2:
+    console: # H2 DB를 웹에서 관리할 수 있는 기능
+      enabled: true           # H2 Console 사용 여부
+      path: /h2-console       # H2 Console 접속 주소
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test # test 부분을 자신이 원하는 것으로 바꾸시면 됩니다.
+    username: sa # username과 password는 자신의 설정에 맞게
+    password:
+#  jpa:
+#    hibernate:
+#      ddl-auto: create # 어플리케이션을 시작할 때 데이터베이스를 초기화하고 다시 테이블 생성
+#    properties:
+#      hibernate:
+#        format_sql: true # 실행되는 query를 보여줌
 server:
-  port: 9001
+  port: 8080
   servlet:
     context-path: /
+
+logging.level:
+  org.hibernate.SQL: debug

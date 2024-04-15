@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Data
 @NoArgsConstructor
@@ -35,17 +34,17 @@ public class MemberSaveReqDto {
 //    @NotEmpty(message = "인증정보 : 필수값입니다.")
 //    private Boolean isUsernameValid;
 
-    public Member toEntity(PasswordEncoder passwordEncoder){
-        return Member
-                .builder()
-                .username(username)
-                .password(passwordEncoder.encode(password))
-                .nickname(nickname)
-                .email(email)
-                .phoneNumber(phoneNumber)
-                .roles("0") //TODO HashSet , enum 클래스로 바꾸기
-                .build();
-    }
+//    public Member toEntity(PasswordEncoder passwordEncoder){
+//        return Member
+//                .builder()
+//                .username(username)
+//                .password(passwordEncoder.encode(password))
+//                .nickname(nickname)
+//                .email(email)
+//                .phoneNumber(phoneNumber)
+//                .roles("0") //TODO HashSet , enum 클래스로 바꾸기
+//                .build();
+//    }
 
 
 }
