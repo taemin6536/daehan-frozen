@@ -1,0 +1,11 @@
+CREATE TABLE MEMBER
+(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    nickname VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phoneNumber VARCHAR(255) NOT NULL,
+    roles INT NOT NULL DEFAULT 0,
+    regDate DATETIME DEFAULT current_timestamp()
+);
