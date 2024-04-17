@@ -17,12 +17,12 @@ spring:
 #      hibernate:
 #        format_sql: true # 실행되는 query를 보여줌
 mybatis:
-  config-location: classpath:mybatis/mapper/*.xml
+  mapper-locations: mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.daehan.frozen.userapi.entity
 
 server:
   port: 8080
   servlet:
     context-path: /
-
-logging.level:
-  org.hibernate.SQL: debug
