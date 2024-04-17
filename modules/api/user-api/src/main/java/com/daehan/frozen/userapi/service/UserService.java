@@ -19,7 +19,7 @@ public class UserService {
     @Autowired
     public UserMapper userMapper;
 
-    public Member saveMember(MemberSaveReqDto reqDto) {
+    public Member createUser(MemberSaveReqDto reqDto) {
         return null;
     }
 
