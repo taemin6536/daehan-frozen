@@ -1,8 +1,7 @@
-import {useEffect, useState} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import "./App.css";
 import axios from "axios";
+import { Button } from "./components/ui/button";
 
 // function App() {
 //   const [count, setCount] = useState(0);
@@ -44,20 +43,23 @@ import axios from "axios";
 // }
 
 function App() {
+  const [hello, setHello] = useState("");
 
-    const [hello, setHello] = useState('')
+  useEffect(() => {
+    axios
+      .get("/api/test")
+      .then((response) => setHello(response.data))
+      .catch((error) => console.log(error));
+  }, []);
 
-    useEffect(() => {
-        axios.get('/api/test')
-            .then(response => setHello(response.data))
-            .catch(error => console.log(error))
-    }, []);
-
-    return (
-        <div>
-            백엔드 데이터 =&gt; {hello}
-        </div>
-    );
+  return (
+    <div>
+      백엔드 데이터 =&gt; {hello}
+      <div>
+        <Button>Click me</Button>
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
