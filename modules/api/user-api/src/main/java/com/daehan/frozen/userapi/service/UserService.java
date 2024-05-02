@@ -4,9 +4,11 @@ import com.daehan.frozen.userapi.entity.Member;
 import com.daehan.frozen.userapi.entity.dto.req.MemberSaveReqDto;
 import com.daehan.frozen.userapi.store.UserMapper;
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -14,13 +16,14 @@ import java.util.List;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class UserService {
     SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 
-    @Autowired
-    public UserMapper userMapper;
+    private final UserMapper userMapper;
 
     @Operation(summary = "유저 생성", description = "유저 생성")
+    @Transactional
     public Member createUser(MemberSaveReqDto reqDto) throws Exception {
 //        if (userMapper.findByUsername(reqDto.getUsername()).isPresent()) {
 //            throw new Exception("이미 존재하는 아이디입니다.");
