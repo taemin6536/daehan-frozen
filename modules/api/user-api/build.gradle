@@ -18,6 +18,16 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-jdbc:3.2.0'
 //    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
+    //시큐리티
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'com.google.code.gson:gson:2.8.9'
+
+    // jjwt 라이브러리 추가
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.2'  // API 의존성 추가
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2' // 구현 의존성 추가
+    runtimeOnly('io.jsonwebtoken:jjwt-orgjson:0.11.2') { exclude group: 'org.json', module: 'json' } // JSON 처리 의존성 추가
+
+    testImplementation 'org.springframework.security:spring-security-test'
 }
 
 // prepareKotlinBuildScriptModel 오류 방지
