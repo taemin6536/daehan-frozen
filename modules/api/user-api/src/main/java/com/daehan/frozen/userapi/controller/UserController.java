@@ -36,7 +36,7 @@ public class UserController {
 
     @Operation(summary = "유저 생성", description = "유저 생성")
     @PostMapping("/user/signup")
-    public ResponseEntity<Object> signup(@Valid @RequestBody MemberSaveReqDto reqDto, BindingResult result){
+    public ResponseEntity<Object> signup(@Valid @RequestBody MemberSaveReqDto reqDto, BindingResult result) throws Exception {
 
         if (result.hasErrors()){
             Map<String, String> errorMap = new HashMap<>();

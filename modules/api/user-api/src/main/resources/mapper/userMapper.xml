@@ -7,4 +7,9 @@
         SELECT *
         FROM MEMBER
     </select>
+
+    <insert id="insertUser" parameterType="com.daehan.frozen.userapi.entity.Member">
+        INSERT INTO MEMBER (USERNAME, PASSWORD, NICKNAME, EMAIL, PHONENUMBER)
+        VALUES (#{username}, #{password}, #{nickname}, #{email}, #{phoneNumber})
+    </insert>
 </mapper>

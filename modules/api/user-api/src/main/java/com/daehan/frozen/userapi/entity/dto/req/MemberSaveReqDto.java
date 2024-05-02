@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class MemberSaveReqDto {
 
-    @Email(message = "이메일 형식이어야합니다.")
+
     @NotEmpty(message = "유저아이디 : {invalid.NotEmpty}")
     private String username;
 
@@ -24,6 +24,7 @@ public class MemberSaveReqDto {
     @NotEmpty(message = "닉네임 : {invalid.NotEmpty}")
     private String nickname;
 
+    @Email(message = "이메일 형식이어야합니다.")
     @NotEmpty(message = "이메일 : {invalid.NotEmpty}")
     private String email;
 
