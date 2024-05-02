@@ -34,7 +34,7 @@ public class Member {
     @Column(nullable = false)
     private String phoneNumber;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "varchar(255) default '0'")
     private String roles; //0 : 일반유저, 1 : 관리자
 
     private Date regDate;
