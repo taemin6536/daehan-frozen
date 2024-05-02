@@ -6,19 +6,19 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class LoginReq {
+public class LoginReqDto {
     private String username;
     private String password;
 
-    public LoginReq() {
+    public LoginReqDto() {
     }
 
-    public LoginReq(String username, String password) {
+    public LoginReqDto(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public LoginReq(Member member) {
+    public LoginReqDto(Member member) {
         this.username = member.getUsername();
         this.password = member.getPassword();
     }

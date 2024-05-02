@@ -9,4 +9,5 @@ import java.util.List;
 public interface UserMapper {
     public List<Member> getUsers();
     void insertUser(Member member);
+    Member findByUsername(String username);
 }

@@ -12,4 +12,10 @@
         INSERT INTO MEMBER (USERNAME, PASSWORD, NICKNAME, EMAIL, PHONENUMBER)
         VALUES (#{username}, #{password}, #{nickname}, #{email}, #{phoneNumber})
     </insert>
+
+    <select id="findbyUsername" resultType="com.daehan.frozen.userapi.entity.Member">
+        SELECT *
+        FROM MEMBER
+        WHERE USERNAME = #{username}
+    </select>
 </mapper>
