@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -30,16 +31,18 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Operation(summary = "유저 생성", description = "유저 생성")
-    @Transactional
-    public Member createUser(@NotNull MemberSaveReqDto reqDto) {
+    public MemberSaveResDto createUser(@NotNull MemberSaveReqDto reqDto) {
 //        if (userMapper.findByUsername(reqDto.getUsername()).isPresent()) {
 //            throw new Exception("이미 존재하는 아이디입니다.");
 //        }
         Member member = Member.from(reqDto, passwordEncoder);
+//        System.out.println(member);
         try {
             userMapper.insertUser(member);
+
         } catch (DataIntegrityViolationException e) {
-            throw new IllegalArgumentException("이미 존재하는 아이디입니다.");
+            e.printStackTrace();
+            throw new IllegalArgumentException("이미 존재하는 아이디입니다");
         }
 
         return MemberSaveResDto.from(member);
@@ -48,32 +51,31 @@ public class UserService {
     public List<MemberResDto> getUsers() {
 //        log.info(sdf.format(userMapper.getUsers().get(0).getRegDate()));
         List<Member> users = userMapper.getUsers();
-        List<MemberResDto> memberResDtos = null;
-        MemberResDto memberResDto;
+        List<MemberResDto> memberResDtos = new ArrayList<>();
+
         for (Member user : users) {
-            memberResDto = new MemberResDto();
+            MemberResDto memberResDto = new MemberResDto();
             memberResDto.setId(user.getId());
             memberResDto.setUsername(user.getUsername());
             memberResDto.setNickname(user.getNickname());
             memberResDto.setEmail(user.getEmail());
             memberResDto.setPhoneNumber(user.getPhoneNumber());
             memberResDto.setRoles(user.getRoles());
-
             memberResDtos.add(memberResDto);
         }
         return memberResDtos;
     }
 
-    @Transactional(readOnly = true)
-    public LoginResDto login(LoginReqDto request) {
-        Member member = userMapper.findByUsername(request.getUsername());
-        if (member == null) {
-            throw new IllegalArgumentException("존재하지 않는 아이디입니다.");
-        }
-        if (!passwordEncoder.matches(request.getPassword(), member.getPassword())) {
-            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
-        }
-
-        return LoginResDto.from(member.getUsername(), member.getRoles());
-    }
+//    @Transactional(readOnly = true)
+//    public LoginResDto login(LoginReqDto request) {
+//        Member member = userMapper.findByUsername(request.getUsername());
+//        if (member == null) {
+//            throw new IllegalArgumentException("존재하지 않는 아이디입니다.");
+//        }
+//        if (!passwordEncoder.matches(request.getPassword(), member.getPassword())) {
+//            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+//        }
+//
+//        return LoginResDto.from(member.getUsername(), member.getRoles());
+//    }
 }

@@ -31,8 +31,6 @@ public class MemberSaveReqDto {
     @NotEmpty(message = "전화번호 : {invalid.NotEmpty}")
     private String phoneNumber;
 
-    private String roles;
-
     //TODO 이메일 인증 적용 할 때 사용
 //    @NotEmpty(message = "인증정보 : 필수값입니다.")
 //    private Boolean isUsernameValid;

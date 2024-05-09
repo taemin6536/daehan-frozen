@@ -2,11 +2,13 @@ package com.daehan.frozen.userapi.entity.dto.res;
 
 import com.daehan.frozen.userapi.entity.Member;
 import com.daehan.frozen.userapi.entity.dto.req.MemberSaveReqDto;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
+@Builder
 public class MemberSaveResDto {
     private Long id;
     private String username;
@@ -26,13 +28,13 @@ public class MemberSaveResDto {
     public MemberSaveResDto() {
     }
 
-    public static Member from(Member request) {
-        return Member.builder()
+    public static MemberSaveResDto from(Member request) {
+        return MemberSaveResDto.builder()
                 .username(request.getUsername())
-                .password(request.getPassword())
-                .username(request.getUsername())
-                .email(request.getUsername())
-                .phoneNumber(request.getUsername())
+                .nickname(request.getNickname())
+                .email(request.getEmail())
+                .phoneNumber(request.getPhoneNumber())
+                .roles(request.getRoles())
                 .build();
     }
 

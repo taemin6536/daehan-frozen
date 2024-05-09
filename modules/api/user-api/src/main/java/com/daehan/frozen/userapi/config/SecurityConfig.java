@@ -20,7 +20,7 @@ public class SecurityConfig  {
                 .csrf(CsrfConfigurer<HttpSecurity>::disable)
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))	// H2 콘솔 사용을 위한 설정
                 .authorizeHttpRequests(requests ->
-                        requests.requestMatchers("/", "/swagger-ui/**", "/v3/**", "/api/v1/**", "/api/user/signup", "/api/user/login").permitAll()	// requestMatchers의 인자로 전달된 url은 모두에게 허용
+                        requests.requestMatchers("/", "/swagger-ui/**", "/v3/**", "/api/v1/**", "/api/user/signup", "/api/user/login", "/api/**").permitAll()	// requestMatchers의 인자로 전달된 url은 모두에게 허용
                                 .requestMatchers(PathRequest.toH2Console()).permitAll()	// H2 콘솔 접속은 모두에게 허용
                                 .anyRequest().authenticated()	// 그 외의 모든 요청은 인증 필요
                 )

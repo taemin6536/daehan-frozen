@@ -45,10 +45,9 @@ public class Member {
         return Member.builder()
                 .username(request.getUsername())
                 .password(encoder.encode(request.getPassword()))
-                .username(request.getUsername())
-                .email(request.getUsername())
-                .phoneNumber(request.getUsername())
-                .roles(request.getRoles())
+                .nickname(request.getNickname())
+                .email(request.getEmail())
+                .phoneNumber(request.getPhoneNumber())
                 .build();
     }
 

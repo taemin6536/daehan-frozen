@@ -58,17 +58,17 @@ public class UserController {
     }
 
 
-    @Operation(summary = "로그인", description = "로그인")
-    @PostMapping("/user/login")
-    public ResponseEntity<?> login(@RequestBody MemberSaveReqDto reqDto){
-        return null;
-    }
-
-    @Operation(summary = "로그아웃", description = "로그아웃")
-    @PostMapping("/user/logout")
-    public ResponseEntity<?> logout(){
-        return null;
-    }
+//    @Operation(summary = "로그인", description = "로그인")
+//    @PostMapping("/user/login")
+//    public ResponseEntity<?> login(@RequestBody MemberSaveReqDto reqDto){
+//        return null;
+//    }
+//
+//    @Operation(summary = "로그아웃", description = "로그아웃")
+//    @PostMapping("/user/logout")
+//    public ResponseEntity<?> logout(){
+//        return null;
+//    }
 
     @Operation(summary = "프로필 수정", description = "프로필 수정")
     @PutMapping("/user/updateprofile/{id}")
