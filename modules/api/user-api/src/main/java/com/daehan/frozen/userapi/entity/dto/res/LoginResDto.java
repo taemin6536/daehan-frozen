@@ -7,11 +7,13 @@ import lombok.Builder;
 public class LoginResDto {
     private String username;
     private String roles;
+    private String token;
 
-    public static LoginResDto from(String username, String roles) {
+    public static LoginResDto from(String username, String roles, String token) {
         return LoginResDto.builder()
                 .username(username)
                 .roles(roles)
+                .token(token)
                 .build();
     }
 }

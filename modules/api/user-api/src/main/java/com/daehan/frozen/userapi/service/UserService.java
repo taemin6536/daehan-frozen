@@ -12,6 +12,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,7 +40,9 @@ public class UserService {
 //        System.out.println(member);
         try {
             userMapper.insertUser(member);
-
+        } catch (DuplicateKeyException ex) {
+            ex.printStackTrace();
+            throw new IllegalArgumentException("이미 존재하는 아이디입니다");
         } catch (DataIntegrityViolationException e) {
             e.printStackTrace();
             throw new IllegalArgumentException("이미 존재하는 아이디입니다");

@@ -3,6 +3,7 @@ package com.daehan.frozen.userapi.service;
 import com.daehan.frozen.userapi.entity.Member;
 import com.daehan.frozen.userapi.entity.dto.req.LoginReqDto;
 import com.daehan.frozen.userapi.entity.dto.res.LoginResDto;
+import com.daehan.frozen.userapi.jwt.TokenProvider;
 import com.daehan.frozen.userapi.store.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ public class LoginService {
 
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
+    private final TokenProvider tokenProvider;
 
     @Transactional(readOnly = true)
     public LoginResDto login(LoginReqDto reqDto) {
@@ -31,7 +33,8 @@ public class LoginService {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
         }
 
-        return LoginResDto.from(member.getUsername(), member.getRoles());
+        String token = tokenProvider.createToken(String.format("%s:%s", member.getUsername(), member.getRoles()));
+        return LoginResDto.from(member.getUsername(), member.getRoles(), token);
     }
 
     @Transactional
