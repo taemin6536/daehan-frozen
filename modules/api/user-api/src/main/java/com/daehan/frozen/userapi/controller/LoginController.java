@@ -14,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.security.auth.login.LoginException;
+
 @Slf4j
 @Tag(name = "Login API", description = "로그인 API")
 @RestController
@@ -25,7 +27,11 @@ public class LoginController {
     @Operation(summary = "로그인", description = "로그인")
     @PostMapping("/user/login")
     public ResponseEntity<?> login(@RequestBody LoginReqDto reqDto){
-        return new ResponseEntity<>(loginService.login(reqDto),HttpStatus.OK);
+        try{
+            return new ResponseEntity<>(loginService.login(reqDto),HttpStatus.OK);
+        }catch (LoginException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Operation(summary = "로그아웃", description = "로그아웃")

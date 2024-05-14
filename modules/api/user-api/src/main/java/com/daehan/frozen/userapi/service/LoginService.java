@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.security.auth.login.LoginException;
 import java.text.SimpleDateFormat;
 
 @Slf4j
@@ -24,10 +25,10 @@ public class LoginService {
     private final TokenProvider tokenProvider;
 
     @Transactional(readOnly = true)
-    public LoginResDto login(LoginReqDto reqDto) {
+    public LoginResDto login(LoginReqDto reqDto) throws LoginException {
         Member member = userMapper.findByUsername(reqDto.getUsername());
         if (member == null) {
-            throw new IllegalArgumentException("존재하지 않는 아이디입니다.");
+            throw new LoginException("존재하지 않는 아이디입니다.");
         }
         if (!passwordEncoder.matches(reqDto.getPassword(), member.getPassword())) {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
