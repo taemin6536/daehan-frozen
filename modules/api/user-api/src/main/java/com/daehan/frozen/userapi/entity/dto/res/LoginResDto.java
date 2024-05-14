@@ -1,9 +1,11 @@
 package com.daehan.frozen.userapi.entity.dto.res;
 
 import lombok.Builder;
-
+import lombok.Data;
+import lombok.Getter;
 
 @Builder
+@Getter
 public class LoginResDto {
     private String username;
     private String roles;
