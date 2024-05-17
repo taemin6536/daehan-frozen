@@ -1,5 +1,6 @@
 package com.daehan.frozen.userapi.controller;
 
+import com.daehan.frozen.userapi.entity.ApiResponse;
 import com.daehan.frozen.userapi.entity.dto.req.LoginReqDto;
 import com.daehan.frozen.userapi.entity.dto.req.MemberSaveReqDto;
 import com.daehan.frozen.userapi.entity.dto.res.LoginResDto;
@@ -26,12 +27,12 @@ public class LoginController {
 
     @Operation(summary = "로그인", description = "로그인")
     @PostMapping("/user/login")
-    public ResponseEntity<?> login(@RequestBody LoginReqDto reqDto){
-        try{
-            return new ResponseEntity<>(loginService.login(reqDto),HttpStatus.OK);
-        }catch (LoginException e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+    public ApiResponse<LoginResDto> login(@RequestBody LoginReqDto reqDto) throws LoginException {
+//        try{
+            return ApiResponse.createSuccess(loginService.login(reqDto));
+//        }catch (LoginException e){
+//            return (ApiResponse<LoginResDto>) ApiResponse.createError(e.getMessage());
+//        }
     }
 
     @Operation(summary = "로그아웃", description = "로그아웃")
