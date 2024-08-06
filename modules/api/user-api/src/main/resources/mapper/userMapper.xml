@@ -8,8 +8,14 @@
         FROM MEMBER
     </select>
 
-    <insert id="insertUser" parameterType="com.daehan.frozen.userapi.entity.Member">
+    <insert id="insertUser" parameterType="com.daehan.frozen.userapi.entity.Member"><![CDATA[
         INSERT INTO MEMBER (USERNAME, PASSWORD, NICKNAME, EMAIL, PHONENUMBER)
         VALUES (#{username}, #{password}, #{nickname}, #{email}, #{phoneNumber})
-    </insert>
+    ]]></insert>
+
+    <select id="findByUsername" parameterType="java.lang.String" resultType="com.daehan.frozen.userapi.entity.Member">
+        SELECT *
+        FROM MEMBER
+        WHERE USERNAME = #{username}
+    </select>
 </mapper>

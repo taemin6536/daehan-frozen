@@ -1,13 +1,15 @@
 package com.daehan.frozen.userapi.entity;
 
-import jakarta.validation.constraints.NotEmpty;
+import com.daehan.frozen.userapi.entity.dto.req.MemberSaveReqDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Date;
+
 
 @Data
 @NoArgsConstructor
@@ -17,7 +19,7 @@ import java.util.Date;
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
 
     @Column(nullable = false, unique = true)
     private String username;
@@ -38,4 +40,18 @@ public class Member {
     private String roles; //0 : 일반유저, 1 : 관리자
 
     private Date regDate;
+
+    public static Member from(MemberSaveReqDto request, PasswordEncoder encoder) {
+        return Member.builder()
+                .username(request.getUsername())
+                .password(encoder.encode(request.getPassword()))
+                .nickname(request.getNickname())
+                .email(request.getEmail())
+                .phoneNumber(request.getPhoneNumber())
+                .build();
+    }
+
+//    public void update(MemberUpdateDto request, PasswordEncoder encoder) {
+//
+//    }
 }

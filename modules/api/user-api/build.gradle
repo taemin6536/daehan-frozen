@@ -26,11 +26,14 @@ dependencies {
     implementation 'io.jsonwebtoken:jjwt-api:0.11.2'  // API 의존성 추가
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2' // 구현 의존성 추가
     runtimeOnly('io.jsonwebtoken:jjwt-orgjson:0.11.2') { exclude group: 'org.json', module: 'json' } // JSON 처리 의존성 추가
+    testImplementation 'org.springframework.security:spring-security-test'
+
+    // https://mvnrepository.com/artifact/org.json/json
+    implementation group: 'org.json', name: 'json', version: '20231013'
+
 
     //swagger
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
-
-    testImplementation 'org.springframework.security:spring-security-test'
 }
 
 // prepareKotlinBuildScriptModel 오류 방지

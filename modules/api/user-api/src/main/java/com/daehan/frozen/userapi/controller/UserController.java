@@ -1,7 +1,9 @@
 package com.daehan.frozen.userapi.controller;
 
+import com.daehan.frozen.userapi.entity.ApiResponse;
 import com.daehan.frozen.userapi.entity.Member;
 import com.daehan.frozen.userapi.entity.dto.req.MemberSaveReqDto;
+import com.daehan.frozen.userapi.entity.dto.res.MemberResDto;
 import com.daehan.frozen.userapi.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -52,24 +54,22 @@ public class UserController {
 
     @Operation(summary = "모든 유저 조회", description = "모든 유저 조회")
     @GetMapping("/user/list")
-    public ResponseEntity<List<Member>> getUsers(){
-        List<Member> memberList = userService.getUsers();
-
-        return ResponseEntity.status(HttpStatus.OK).body(memberList);
+    public ApiResponse<List<MemberResDto>> getUsers(){
+        return ApiResponse.createSuccess(userService.getUsers());
     }
 
 
-    @Operation(summary = "로그인", description = "로그인")
-    @PostMapping("/user/login")
-    public ResponseEntity<?> login(@RequestBody MemberSaveReqDto reqDto){
-        return null;
-    }
-
-    @Operation(summary = "로그아웃", description = "로그아웃")
-    @PostMapping("/user/logout")
-    public ResponseEntity<?> logout(){
-        return null;
-    }
+//    @Operation(summary = "로그인", description = "로그인")
+//    @PostMapping("/user/login")
+//    public ResponseEntity<?> login(@RequestBody MemberSaveReqDto reqDto){
+//        return null;
+//    }
+//
+//    @Operation(summary = "로그아웃", description = "로그아웃")
+//    @PostMapping("/user/logout")
+//    public ResponseEntity<?> logout(){
+//        return null;
+//    }
 
     @Operation(summary = "프로필 수정", description = "프로필 수정")
     @PutMapping("/user/updateprofile/{id}")
